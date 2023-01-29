@@ -1,38 +1,106 @@
-.App {
-  text-align: center;
+.listisDone {
+  color: rgb(255, 123, 0);
+  text-decoration: line-through;
+  font-size: 16px;
+  border-color: #cccccc;
+  border-radius: 12px;
+  box-shadow: 1px 2px 5px 0px rgba(42, 42, 42, 0.75);
+  font-family: cursive;
+  font-weight: normal;
+  padding: 7px;
+  border-style: inset;
+  border-width: 0px;
+  caret-color: transparent;
+  cursor: pointer !important;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btnisDone {
+  color: rgb(255, 123, 0);
+  width: 30px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Container {
+  background-color: aqua;
+border-radius: 5%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: fit-content;
+  padding: 50px;
+  margin-right: auto;
+  margin-left: auto;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+.bkg {
+  background-image: url(https://img.freepik.com/free-vector/flat-design-abstract-round-shapes-background_23-2149120570.jpg?w=2000);
+  background-repeat: repeat;
+  background-size: cover;
+  height: 650px;
+}
+.listinput {
+  font-size: 16px;
+  border-color: #cccccc;
+  border-radius: 12px;
+  box-shadow: 1px 2px 5px 0px rgba(42, 42, 42, 0.75);
+  font-family: cursive;
+  font-weight: normal;
+  padding: 7px;
+  border-style: inset;
+  border-width: 0px;
+  caret-color: transparent;
+  cursor: pointer !important;
+}
+.add_input{
+  font-size: 16px;
+  border-color: #cccccc;
+  border-radius: 12px;
+  box-shadow: 1px 2px 5px 0px rgba(42, 42, 42, 0.75);
+  font-family: cursive;
+  font-weight: normal;
+  padding: 7px;
+  border-style: inset;
+  border-width: 0px;
+}
+.btn{
+  width: 30px;
+  transition: 0.3s;
+}
+.btn:hover{
+color: rgb(255, 123, 0);
+transition: 0.3s;
+}
+h1{
+  font-family: cursive;
+  color: rgb(255, 123, 0);
+  margin-left: 23%;
+  
+}
+.add{
+  background-color: black;
   color: white;
+  border: none;
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  margin-left: 5px;
+  transition: 0.3s;
 }
-
-.App-link {
-  color: #61dafb;
+.add:hover{
+  background-color: rgb(255, 123, 0);
+  transition: 0.3s;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.done{
+  background-color: black;
+  color: white;
+  border: none;
+  width: 50%;
+  height: 30px;
+  border-radius: 10px;
+  margin-left: 5px;
+  transition: 0.3s;
+}
+.done:hover{
+  background-color: rgb(255, 123, 0);
+  transition: 0.3s;
 }
