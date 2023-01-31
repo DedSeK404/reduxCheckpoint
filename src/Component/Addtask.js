@@ -49,10 +49,7 @@ export const Addtask = ({
       />
       <button className="add" type="submit">{editTodo ? "Save" : "Add"}</button>
     </form>
-    <div style={{display:"flex"}}>
-    <button className="done">Done</button>
-    <button className="done">NotDone</button>
-    </div>
+   
     </>
   );
 };

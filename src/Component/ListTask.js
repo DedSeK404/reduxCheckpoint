@@ -5,9 +5,11 @@ import {
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useState } from "react";
 
 export const ListTask = ({ todo, setTodo, setEditTodo }) => {
+
+  
   const handleEdit = ({ id }) => {
     const findTodo = todo.find((todo) => todo.id === id);
     setEditTodo(findTodo);
@@ -18,17 +20,32 @@ export const ListTask = ({ todo, setTodo, setEditTodo }) => {
         if (item.id === todos.id) {
           return { ...item, isDone: !item.isDone };
         }
+
         return item;
       })
     );
   };
-  const handleDelete = ({ id }) => {
+  const handleDelete = ({ id }) => { 
     setTodo(todo.filter((todo) => todo.id !== id));
   };
+
+  const [done, setDone] = useState(true);
+  const handleClick = (e) => {
+    
+    setDone((current) => !current);
+    
+  };
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-      {todo.map((todo) => (
-        
+      <div style={{ display: "flex" }}>
+        <button onClick={handleClick} className="done">
+          Done
+        </button>
+        <button className="done">NotDone</button>
+      </div>
+      {done &&
+        todo.map((todo) => (
           <motion.li
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -37,7 +54,6 @@ export const ListTask = ({ todo, setTodo, setEditTodo }) => {
             key={todo.id}
           >
             <input
-            
               className={`list${todo.isDone ? "isDone" : "input"}`}
               type="text"
               value={todo.description}
@@ -59,8 +75,7 @@ export const ListTask = ({ todo, setTodo, setEditTodo }) => {
               icon={faTrashCan}
             ></FontAwesomeIcon>
           </motion.li>
-        
-      ))}
+        ))}
     </div>
   );
 };
