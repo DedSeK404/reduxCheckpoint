@@ -1,5 +1,4 @@
-export const INCREMENT = "INCREMENT";
-export const DECREMENT = "DECREMENT";
-
-export const GETTEXT = "GETTEXT";
-export const TOGGLE = "TOGGLE";
+export const ADDTODO= 'ADDTODO'
+export const FILTERTODO= 'FILTERTODO'
+export const EDITTODO= 'EDITTODO'
+export const DELETETODO = 'DELETETODO'

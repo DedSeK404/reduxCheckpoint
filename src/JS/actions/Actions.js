@@ -1,31 +1,30 @@
-import {
-    DECREMENT,
-    GETTEXT,
-    INCREMENT,
-    TOGGLE,
-  } from "../actiotypes/actionTypes";
+import { ADDTODO, DELETETODO, EDITTODO, FILTERTODO } from "../actionTypes/actionTypes";
+
   
-  export const increment = () => {
+  export const deletetodo = (id) => {
     return {
-      type: INCREMENT,
+      type: DELETETODO,
+      payload: id
     };
   };
-  export const decrement = () => {
+  export const addtodo = (description) => {
     return {
-      type: DECREMENT,
+      type: ADDTODO,
+      payload: description
     };
   };
   
-  export const gettext = (text) => {
+  export const filtertodo = (text) => {
     return {
-      type: GETTEXT,
+      type: FILTERTODO,
       payload: text,
     };
   };
   
-  export const Show = () => {
+  export const edittodo = (id, title) => {
     return {
-      type: TOGGLE,
+      type: EDITTODO,
+      payload: {id, title }
     };
   };
   

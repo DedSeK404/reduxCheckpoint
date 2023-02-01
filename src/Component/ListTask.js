@@ -6,8 +6,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 export const ListTask = ({ todo, setTodo, setEditTodo }) => {
+  const list = useSelector(state => state.list);
+  console.log(list)
   const handleEdit = ({ id }) => {
     const findTodo = todo.find((todo) => todo.id === id);
     setEditTodo(findTodo);
@@ -45,37 +48,37 @@ export const ListTask = ({ todo, setTodo, setEditTodo }) => {
           all
         </button>
       </div>
-      {todo
+      {list
         .filter((e) =>
           done == "done" ? e.isDone : done == "undone" ? !e.isDone : e
         )
-        .map((todo) => (
+        .map(({ id, description, isDone }) => (
           <motion.li
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.1 }}
             whileHover={{ scale: 1.07 }}
-            key={todo.id}
+            key={id}
           >
             <input
-              className={`list${todo.isDone ? "isDone" : "input"}`}
+              className={`list${isDone ? "isDone" : "input"}`}
               type="text"
-              value={todo.description}
+              value={description}
               onChange={(event) => event.preventDefault()}
             />
             <FontAwesomeIcon
-              className={`btn${todo.isDone ? "isDone" : ""}`}
-              onClick={() => handleComplete(todo)}
+              className={`btn${isDone ? "isDone" : ""}`}
+              onClick={() => handleComplete(list)}
               icon={faCheckToSlot}
             ></FontAwesomeIcon>
             <FontAwesomeIcon
               className="btn"
-              onClick={() => handleEdit(todo)}
+              onClick={() => handleEdit(list)}
               icon={faEdit}
             ></FontAwesomeIcon>
             <FontAwesomeIcon
               className="btn"
-              onClick={() => handleDelete(todo)}
+              onClick={() => handleDelete(list)}
               icon={faTrashCan}
             ></FontAwesomeIcon>
           </motion.li>
