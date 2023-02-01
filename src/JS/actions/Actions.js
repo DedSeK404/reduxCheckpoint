@@ -1,4 +1,4 @@
-import { ADDTODO, DELETETODO, EDITTODO, FILTERTODO } from "../actionTypes/actionTypes";
+import { ADDTODO, CHECK, DELETETODO, EDITTODO, FILTERTODO } from "../actionTypes/actionTypes";
 
   
   export const deletetodo = (id) => {
@@ -25,6 +25,12 @@ import { ADDTODO, DELETETODO, EDITTODO, FILTERTODO } from "../actionTypes/action
     return {
       type: EDITTODO,
       payload: {id, title }
+    };
+  };
+  export const check = (id,isDone) => {
+    return {
+      type: CHECK,
+      payload: {id, isDone}
     };
   };
   

@@ -6,18 +6,47 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deletetodo, edittodo } from "../JS/actions/Actions";
 
-export const ListTask = ({ todo, setTodo, setEditTodo }) => {
+export const ListTask = ({ todo, setTodo, setEditTodo, id, description, isDone }) => {
   const list = useSelector(state => state.list);
-  console.log(list)
-  const handleEdit = ({ id }) => {
-    const findTodo = todo.find((todo) => todo.id === id);
-    setEditTodo(findTodo);
-  };
+  
+  // const handleEdit = ({ id }) => {
+  //   const findTodo = todo.find((todo) => todo.id === id);
+  //   setEditTodo(findTodo);
+  // };
+
+  // const handleDelete = ({ id }) => {
+  //   setTodo(todo.filter((todo) => todo.id !== id));
+  // };
+
+ 
+  const [todotitle, setTodoTitle] = useState("");
+  const handleChange = (e) => setTodoTitle(e.target.value);
+  const dispatch = useDispatch();
+  const status = useSelector(state => state.status);
+  
+  const handleEdit = () => {
+    dispatch(edittodo());
+  }
+
+ const [check, setCheck] = useState(false)
+ const handleCheck = (isDone) => {
+  setCheck(isDone = true)
+ }
+const [done, setDone] = useState(status);
+console.log(status)
+const handleClick = (value) => {
+  setDone(value);
+};
+
+  const handleDelete = () => dispatch(deletetodo(id));
+  const handleChecks = () => dispatch(check(isDone));
+  console.log(isDone)
   const handleComplete = (todos) => {
     setTodo(
-      todo.map((item) => {
+      list.map((item) => {
         if (item.id === todos.id) {
           return { ...item, isDone: !item.isDone };
         }
@@ -26,15 +55,10 @@ export const ListTask = ({ todo, setTodo, setEditTodo }) => {
       })
     );
   };
-  const handleDelete = ({ id }) => {
-    setTodo(todo.filter((todo) => todo.id !== id));
-  };
 
-  const [done, setDone] = useState("all");
-  const handleClick = (value) => {
-    setDone(value);
-  };
 
+  const handleChecker = () => dispatch(check(isDone));
+  
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
       <div style={{ display: "flex" }}>
@@ -53,6 +77,7 @@ export const ListTask = ({ todo, setTodo, setEditTodo }) => {
           done == "done" ? e.isDone : done == "undone" ? !e.isDone : e
         )
         .map(({ id, description, isDone }) => (
+          
           <motion.li
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -64,11 +89,11 @@ export const ListTask = ({ todo, setTodo, setEditTodo }) => {
               className={`list${isDone ? "isDone" : "input"}`}
               type="text"
               value={description}
-              onChange={(event) => event.preventDefault()}
+              onChange={handleChange}
             />
             <FontAwesomeIcon
               className={`btn${isDone ? "isDone" : ""}`}
-              onClick={() => handleComplete(list)}
+               onClick={handleChecker}
               icon={faCheckToSlot}
             ></FontAwesomeIcon>
             <FontAwesomeIcon
@@ -78,7 +103,7 @@ export const ListTask = ({ todo, setTodo, setEditTodo }) => {
             ></FontAwesomeIcon>
             <FontAwesomeIcon
               className="btn"
-              onClick={() => handleDelete(list)}
+              onClick={handleDelete}
               icon={faTrashCan}
             ></FontAwesomeIcon>
           </motion.li>
