@@ -20,19 +20,23 @@ export const Task = ({ id, description, isDone }) => {
     delete_audio.play();
   };
 
+  let edit_audio = new Audio("/Beep.mp3");
+  const audio_edit = () => {
+    edit_audio.play();
+  };
+
   const list = useSelector((state) => state.list);
+
   const [todotitle, setTodoTitle] = useState("");
   const handleChange = (e) => setTodoTitle(e.target.value);
+  
   const dispatch = useDispatch();
-  const status = useSelector((state) => state.status);
-
-
-
-  const handleEdit = () => dispatch(edittodo());
+  const handleEdit = () => dispatch(edittodo(), audio_edit());
 
   const handleDelete = () => dispatch(deletetodo(id), audio_delete());
 
   const handleChecker = () => dispatch(checktodo(id, isDone), start());
+
   return (
     <div>
       <motion.li

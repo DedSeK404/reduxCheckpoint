@@ -42,8 +42,8 @@ export const Reducer = (state = initstate, action) => {
         ...state,
         list: state.list.map((e) =>
           e.id == action.payload.id
-            ? { ...e, description: action.payload.description,
-              isDone: action.payload.isDoneEdit, }
+            ? { ...e, description: action.payload.title,
+               }
             : e
         ),
       };
