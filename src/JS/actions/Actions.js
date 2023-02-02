@@ -21,10 +21,10 @@ import { ADDTODO, CHECKTODO, DELETETODO, EDITTODO, FILTERTODO } from "../actionT
     };
   };
   
-  export const edittodo = (id, title, isDoneEdit) => {
+  export const edittodo = (id, description, isDoneEdit) => {
     return {
       type: EDITTODO,
-      payload: {id, title, isDoneEdit }
+      payload: {id, description, isDoneEdit }
     };
   };
   export const checktodo = (id,isDone) => {

@@ -1,66 +1,39 @@
-import { v4 as uuidv4 } from "uuid";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addtodo, deletetodo } from "../JS/actions/Actions";
+import { addtodo } from "../JS/actions/Actions";
 
 export const Addtask = () => {
+  let audio = new Audio("/Pop.mp3");
+  const start = () => {
+    audio.play();
+  };
+
   const dispatch = useDispatch();
-  // const updateTodo = (description, id, isDone) => {
-  //   const newTodo = todo.map((todo) =>
-  //     todo.id === id ? { description, id, isDone } : todo
-  //   );
-  //   setTodo(newTodo);
-  //   setEditTodo("");
-  // };
-  // useEffect(() => {
-  //   if (editTodo) {
-  //     setInput(editTodo.description);
-  //   } else {
-  //     setInput("");
-  //   }
-  // }, [setInput, editTodo]);
-  // const onINputChange = (event) => {
-  //   setInput(event.target.value);
-  // };
-  // const onFormSubmit = (event) => {
-  //   event.preventDefault();
-    // if (!editTodo) {
-    //   setTodo([...todo, { id: uuidv4(), description: input, isDone: false }]);
-    //   setInput("");
-    // } else {
-    //   updateTodo(input, editTodo.id, editTodo.isDone);
-    // }
-    
-  // };
 
-  
-  
-
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState("");
   const handleAddTask = () => {
     dispatch(addtodo(description));
-    setDescription('');
-    
+    setDescription("");
+    start();
   };
+
   return (
     <>
-    <h1>Todo List</h1>
-    <form >
-      {/* onSubmit={onFormSubmit} */}
-      <input
-      className="add_input"
-        type="text"
-        placeholder="Enter a Todo..."
-        // value={input}
-        value={description}
-        required
-        // onChange={onINputChange}
-        onChange={e => setDescription(e.target.value)}
-      />
-      {/* <button className="add" type="submit">{editTodo ? "Save" : "Add"}</button> */}
-      <button className="add" onClick={handleAddTask}>Add</button>
-    </form>
-   
+      <h1>Todo List</h1>
+      <form>
+        <input
+          className="add_input"
+          type="text"
+          placeholder="Enter a Todo..."
+          value={description}
+          required
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        {/* <button className="add" type="submit">{editTodo ? "Save" : "Add"}</button> */}
+        <button className="add" onClick={handleAddTask}>
+          Add
+        </button>
+      </form>
     </>
   );
 };
