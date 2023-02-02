@@ -5,23 +5,14 @@ import { useState } from "react";
 import { ListTask } from "./Component/ListTask";
 
 function App() {
-  const [input, setInput] = useState("");
-  const [todo, setTodo] = useState([]);
-  const [editTodo, setEditTodo] = useState(null);
-  
-  
-
-
-
-
 
   return (
     <div className="bkg">
       <br></br> <br></br>
     <div className="Container">
-      <Task />
-      <Addtask input={input} setInput={setInput} todo={todo} setTodo={setTodo} editTodo={editTodo} setEditTodo={setEditTodo}/>
-      <ListTask todo={todo} setTodo={setTodo}  setEditTodo={setEditTodo} />
+      
+      <Addtask />
+      <ListTask />
     </div>
     </div>
   );

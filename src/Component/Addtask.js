@@ -3,14 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addtodo, deletetodo } from "../JS/actions/Actions";
 
-export const Addtask = ({
-  todo,
-  setTodo,
-  input,
-  setInput,
-  editTodo,
-  setEditTodo,
-}) => {
+export const Addtask = () => {
   const dispatch = useDispatch();
   // const updateTodo = (description, id, isDone) => {
   //   const newTodo = todo.map((todo) =>
@@ -51,6 +44,7 @@ export const Addtask = ({
   };
   return (
     <>
+    <h1>Todo List</h1>
     <form >
       {/* onSubmit={onFormSubmit} */}
       <input

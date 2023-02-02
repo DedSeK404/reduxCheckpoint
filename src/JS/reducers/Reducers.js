@@ -1,7 +1,8 @@
+import { v4 as uuidv4 } from "uuid";
 import { list } from "../../Component/data";
 import {
   ADDTODO,
-  CHECK,
+  CHECKTODO,
   DELETETODO,
   EDITTODO,
   FILTERTODO,
@@ -20,7 +21,7 @@ export const Reducer = (state = initstate, action) => {
         list: [
           ...state.list,
           {
-            id: state.list.length + 1,
+            id: uuidv4(),
             description: action.payload,
             isDone: false,
           },
@@ -41,17 +42,18 @@ export const Reducer = (state = initstate, action) => {
         ...state,
         list: state.list.map((e) =>
           e.id == action.payload.id
-            ? { ...e, description: action.payload.title }
+            ? { ...e, description: action.payload.title,
+              isDone: action.payload.isDoneEdit, }
             : e
         ),
       };
-      case CHECK:
+      case CHECKTODO:
       return {
         ...state,
         list: state.list.map((e) =>
           e.id == action.payload.id
             ? 
-            { ...e, isDone: !e.isDone }
+            {...e, isDone: !action.payload.isDone }
             : e
         ),
       };
