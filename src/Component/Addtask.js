@@ -12,9 +12,13 @@ export const Addtask = () => {
 
   const [description, setDescription] = useState("");
   const handleAddTask = () => {
-    dispatch(addtodo(description));
+    if (!description) {
+      alert("Please Fill The Form")
+    } else {
+      dispatch(addtodo(description));
     setDescription("");
     start();
+    }
   };
 
   return (
@@ -29,7 +33,7 @@ export const Addtask = () => {
           required
           onChange={(e) => setDescription(e.target.value)}
         />
-        {/* <button className="add" type="submit">{editTodo ? "Save" : "Add"}</button> */}
+        
         <button className="add" onClick={handleAddTask}>
           Add
         </button>

@@ -25,13 +25,20 @@ export const Task = ({ id, description, isDone }) => {
     edit_audio.play();
   };
 
-  const list = useSelector((state) => state.list);
-
-  const [todotitle, setTodoTitle] = useState("");
+  // const list = useSelector((state) => state.list);
+  const [todotitle, setTodoTitle] = useState(description);
   const handleChange = (e) => setTodoTitle(e.target.value);
-  
+
+  const [readinput, setreadinput] = useState(true);
   const dispatch = useDispatch();
-  const handleEdit = () => dispatch(edittodo(), audio_edit());
+  const handleEdit = (event) => {
+    if (readinput) {
+      setreadinput(false);
+    } else {
+      dispatch(edittodo(id, todotitle), audio_edit());
+      setreadinput(true);
+    }
+  };
 
   const handleDelete = () => dispatch(deletetodo(id), audio_delete());
 
@@ -48,8 +55,9 @@ export const Task = ({ id, description, isDone }) => {
         <input
           className={`list${isDone ? "isDone" : "input"}`}
           type="text"
-          value={description}
+          value={todotitle}
           onChange={handleChange}
+          readOnly={readinput}
         />
         <FontAwesomeIcon
           className={`btn${isDone ? "isDone" : ""}`}
@@ -57,8 +65,9 @@ export const Task = ({ id, description, isDone }) => {
           icon={faCheckToSlot}
         ></FontAwesomeIcon>
         <FontAwesomeIcon
-          className="btn"
-          onClick={() => handleEdit(list)}
+        className={`btn${readinput ? "btn" : "on"}`}
+          // className="btn"
+          onClick={handleEdit}
           icon={faEdit}
         ></FontAwesomeIcon>
         <FontAwesomeIcon

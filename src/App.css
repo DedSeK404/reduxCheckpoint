@@ -48,7 +48,7 @@ border-radius: 5%;
   padding: 7px;
   border-style: inset;
   border-width: 0px;
-  caret-color: transparent;
+  
   cursor: pointer !important;
 }
 .add_input{
@@ -102,5 +102,9 @@ h1{
 }
 .done:hover{
   background-color: rgb(255, 123, 0);
+  transition: 0.3s;
+}
+.btnon{
+  color: red;
   transition: 0.3s;
 }
